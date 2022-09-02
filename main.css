@@ -1,0 +1,190 @@
+body {
+    background-color: rgb(248, 248, 248);
+    font-family: 'Montserrat';
+    width: 750px;
+    margin: 0;
+}
+
+.task {
+    color: black;
+    font-weight: bold;
+    right: 50%; 
+    top: 50;
+    position: fixed;
+    font-size: 50px;
+    font-size: 4vw;
+}
+
+.list {
+    color: darkgray;
+}
+
+.line {
+    height:2px; 
+    border-width: 0; 
+    background-color:rgb(37, 102, 241);
+    position: absolute;
+    top: 100;
+    width: 29%;
+    margin-left: 8px;
+}
+
+.line2 {
+    height:2px; 
+    border-width: 0; 
+    background-color:rgb(37, 102, 241);
+    position: absolute;
+    top: 100;
+    width: 48%;
+    right: 0;
+    margin-right: 8px;
+}
+
+.subject {
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    display: flex;
+}
+
+.task-name {
+    position: absolute;
+    top: 120;
+    left: 50;
+    color: darkgray;
+    font-size: 20px;
+}
+
+.date {
+    position: absolute;
+    top: 120;
+    color: darkgray;
+    font-size: 20px;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.make-todo {
+    position: absolute;
+    top: 150;
+    left: 0;
+    margin-left: 10px;
+}
+
+.textbox {
+    width: 300px;
+    border: none;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.15);
+    font-size: 16px;
+    border-radius: 30px;
+    padding: 12px 15px;
+    
+}
+
+.date-picker {
+    width: 150px;
+    border: none;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.15);
+    font-size: 16px;
+    border-radius: 30px;
+    padding: 12px 15px;
+    margin-left: 10px;;
+    
+}
+
+.add-button {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: lightgray;;
+    border-radius: 5px;
+    border-color: rgb(192, 192, 192);
+    cursor: pointer;
+    position: absolute;
+    top: 155;
+    left: 120;
+    transition: 0.15s;
+    margin-left: 20px;
+}
+
+.add-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.add-button .add-to-list {
+    position: absolute;
+    background-color: gray;
+    color: white;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 8px;
+    padding-right: 8px;
+    border-radius: 2px;
+    font-size: 12px;
+    bottom: -30px;
+    opacity: 0;
+    transition: opacity 0.15s;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+.add-button:hover .add-to-list {
+    opacity: 1;
+}
+
+.row {
+    display: flex;
+    position: static;
+}
+
+.todolist {
+    left: 100;
+    top: 230;
+    position: absolute;
+    border: solid;
+    padding: 20px 20px;
+    border-radius: 10px;
+    border-color: rgb(109, 150, 240);
+    color: rgb(133, 164, 231);
+    font-weight: bold;
+    margin-top: 10px;
+    line-height: 30px;
+}
+
+@media (max-width: 530px) {
+    .add-button {
+        position: absolute;
+        margin-top: 12.5rem;
+        top: 0;
+        margin-left: 5rem;
+    }
+}
+
+@media (max-width: 530px) {
+    .todolist {
+        margin-top: 2rem;
+    }
+}
+
+@media (max-width: 474px) {
+    .date-picker {
+        position: absolute;
+        left: 0;
+        margin-top: 50px;
+    }
+}
+
+@media (max-width: 474px) {
+    .date {
+        opacity: 0;
+    }
+}

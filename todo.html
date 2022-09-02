@@ -1,0 +1,148 @@
+<html>
+    <head>
+        <title>My Task List</title>
+
+        <link rel="stylesheet" href="main.css">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"> 
+    </head>
+    <body>
+        <header class="header">
+            <div class="task">Task <span class="list">List</span></div>
+            <div class="line"></div>
+            <div class="line2"></div>
+            <div class="subject">
+                <div class="task-name">Task Name</div>
+                <div class="date">Date</div>
+            </div>
+        </header>
+
+        <section>
+            <div class="container">
+                <div class="make-todo">
+                <input class="textbox" id="todo-title" type="text" />
+                <input class="date-picker" id="date-picker" type="date" />
+                </div>
+                <button class="add-button" onclick="addTodo()">&#43;
+                    <div class="add-to-list">Add to list</div>
+                </button>
+            </div>
+            <div class="row">
+                <div class="todolist" id="todo-list"></div>
+                
+            </div>
+        </section>
+        
+        <script>
+            // Model
+            // If localstorage has a todos array, then use it
+            // Otherwise use the default array
+            let todos;
+
+            // Retrieve localStorage
+            const savedTodos = JSON.parse(localStorage.getItem('todos'));
+            // Check if it's an array
+            if (Array.isArray(savedTodos)) {
+                todos = savedTodos;
+
+            } else {
+              todos = [{
+                title: 'Get groceries',
+                dueDate: '2021-10-04',
+                id: 'id1'
+            }, {
+                title: 'Wash car',
+                dueDate: '2021-02-03',
+                id: 'id2'
+            }, {
+                title: 'Make dinner',
+                dueDate: '2021-03-04',
+                id: 'id3'
+            }];
+            }
+
+            // Creates a todo
+            function createTodo(title, dueDate) {
+                const id = '' + new Date().getTime();
+
+                todos.push({
+                    title: title,
+                    dueDate: dueDate,
+                    id: id
+                });
+
+                saveTodos();
+            }
+
+
+            render();
+
+            // Deletes a todo
+            function removeTodo(idToDelete) {
+                todos = todos.filter(function (todo) {
+                    // if the id of this todo matches idToDelete, return false
+                    // For everything else, return true
+                    if (todo.id === idToDelete) {
+                        return false;
+                    } else {
+                        return true;
+                    }
+                
+                });
+
+                saveTodos();
+            }
+
+            function saveTodos() {
+                localStorage.setItem('todos', JSON.stringify(todos));
+            }
+            
+            // Controller
+            function addTodo() {
+                const textbox = document.getElementById('todo-title');
+                const title = textbox.value;
+
+                const datePicker = document.getElementById('date-picker');
+                const dueDate = datePicker.value;
+
+                createTodo(title, dueDate);
+                render();
+            }
+
+            const addTodo2 = () => 'string';
+
+            function deleteTodo(event) {
+                const deleteButton = event.target;
+                const idToDelete = deleteButton.id;
+
+                removeTodo(idToDelete);
+                render();
+            }
+
+            // View
+            function render() {
+                //reset our list
+                document.getElementById('todo-list').innerHTML = '';
+
+                todos.forEach(function (todo) {
+                    const element = document.createElement('div');
+                    element.innerText = todo.title + ' ' + todo.dueDate;
+
+                    const deleteButton = document.createElement('button');
+                    deleteButton.innerText = 'Done';
+                    deleteButton.style = 'margin-left: 12px; background-color: beige; font-family: Montserrat; cursor: pointer; border-radius: 4px;';
+                    deleteButton.onclick = deleteTodo;
+                    deleteButton.id = todo.id;
+                    element.appendChild(deleteButton);
+
+
+
+                    const todoList = document.getElementById('todo-list');
+                    todoList.appendChild(element);
+                });
+            }
+        </script>
+    </body>
+</html>
